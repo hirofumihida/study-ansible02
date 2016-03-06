@@ -1,0 +1,4 @@
+---
+esx_hostname: 192.168.100.8
+esx_password: hogehoge
+guest_vm_name: testvm01

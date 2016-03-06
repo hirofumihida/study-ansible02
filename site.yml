@@ -1,0 +1,44 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  user: root
+  sudo: false
+  gather_facts: false
+  serial: 1
+
+  tasks:
+    - name: Deploy guest from template
+      vsphere_guest:
+        vcenter_hostname: "{{ esx_hostname }}"
+        username: root
+        password: "{{ esx_password }}"
+        guest: "{{ guest_vm_name }}"
+        state: powered_off
+        vm_extra_config:
+          vcpu.hotadd: yes
+          mem.hotadd:  yes
+          notes: This is a test VM
+#          folder: MyFolder
+        vm_disk:
+          disk1:
+            size_gb: 10
+            type: thin
+            datastore: datastore1
+            # VMs can be put into folders. The value given here is either the full path
+            # to the folder (e.g. production/customerA/lamp) or just the last component
+            # of the path (e.g. lamp):
+            folder: test/
+        vm_nic:
+          nic1:
+            type: vmxnet3
+            network: VM Network
+            network_type: standard
+        vm_hardware:
+          memory_mb: 512
+          num_cpus: 2
+          osid: centos64Guest
+          scsi: paravirtual
+        esxi:
+          datacenter: ha-datacenter
+          hostname: localhost.example.org
+
