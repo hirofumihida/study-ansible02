@@ -1,0 +1,4 @@
+---
+source_file: 'CentOS-6-x86_64-GenericCloud-1602.vmdk'
+dest_dir: '/vmfs/volumes/datastore1/vmdk-images'
+

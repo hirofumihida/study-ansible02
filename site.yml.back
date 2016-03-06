@@ -1,0 +1,14 @@
+---
+- name: install vm on esxi
+  hosts: esxi
+#  gather_facts: false
+  tasks:
+#    - name: exec remote command
+#      raw: /bin/date
+    - name: copy os image
+#      copy: src={{ source_file }} dest={{ dest_dir }}  owner=root group=root
+#      copy: src=test.txt dest=/vmfs/volumes/datastore1/vmdk-images/test.txt owner=root group=root
+#      copy: src=./test.txt dest=/test.txt owner=root group=root
+#      copy: src=./test.txt dest=/home/hirofumi/test.txt owner=hirofumi group=hirofumi
+      vsphere_copy: host=192.168.100.8 login=root password=0917_Hlx src=./test.txt datacenter='' datastore=datastore1 path=vmdk-images/test.txt validate_certs=no
+
