@@ -11,7 +11,7 @@
       vsphere_guest:
         vcenter_hostname: 192.168.100.8
         username: root
-        password: 0917_Hlx
+        password: {{ esx_password}}
         guest: newvm001
         state: powered_on
         vm_extra_config:
